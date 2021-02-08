@@ -1,0 +1,48 @@
+ handleSelectionChange:function(oevt){
+		 	var oselected=oevt.oSource.mProperties.selectedKeys;
+			var filt=[];
+	var a=oselected;
+	//retrive list by using id
+	var otable=this.getView().byId("table");
+	//binding the values
+	
+	var binding=otable.getBinding("items");
+	for(var j=0;j<a.length;j++){
+		//if(a[j]){
+	var filter=new sap.ui.model.Filter("OrderID", sap.ui.model.FilterOperator.EQ, a[j]);
+	filt.push(filter);
+
+}
+	binding.filter(filt);
+		},
+		onFinish:function(evt){
+		var otbl=this.getView().byId("table");
+			var row=otbl.mAggregations.items;
+			var ln=row.length;
+			var ar=[];
+			var obj={};
+			for(var i=0;i<ln;i++){
+			obj.name=row[i].mAggregations.cells[0].mProperties.text;
+			ar.push(obj);
+			obj={};
+			}
+			var oModel=new sap.ui.model.json.JSONModel();
+			oModel.setData(ar);
+			this.getView().setModel(oModel,"new");        
+			
+	// 		var oselected=evt.oSource.mProperties.selectedKeys;
+	// 		var filt=[];
+	// var a=oselected;
+	// //retrive list by using id
+	// var otable=this.getView().byId("table");
+	// //binding the values
+	
+	// var binding=otable.getBinding("items");
+	// var filter=new sap.ui.model.Filter("CustomerID", sap.ui.model.FilterOperator.All, a);
+	// filt.push(filter);
+
+	// binding.filter(filt);
+			
+		},
+	});
+});

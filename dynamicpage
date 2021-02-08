@@ -1,0 +1,147 @@
+	<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Order details"/>
+					</f:heading>
+					
+					<f:expandedContent>
+						<Label text="This is a subheading"/>
+					</f:expandedContent>
+					<f:snappedContent>
+						<Label text="This is a subheading"/>
+					</f:snappedContent>
+					<f:snappedTitleOnMobile>
+						<Title text="Header Title On Phone"/>
+					</f:snappedTitleOnMobile>
+					<f:content>
+						<GenericTag text="SR"
+							status="Error"
+							press="onGenericTagPress"
+							design="StatusIconHidden">
+							<ObjectNumber number="2"
+								unit="M"
+								emphasized="false"
+								state="Error"/>
+						</GenericTag>
+					</f:content>
+					<f:actions>
+						<MultiComboBox
+			selectionChange="handleSelectionChange"
+			selectionFinish="onFinish"
+			width="300px"
+			items="{path:'new>/'}">
+			<core:Item key="{new>name}" text="{new>name}"/>
+		</MultiComboBox>
+					</f:actions>
+					
+				</f:DynamicPageTitle>
+			</f:title>
+			
+				<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<layout:HorizontalLayout allowWrapping="true">
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+							<ObjectAttribute title="Location" text="India"/>
+							<ObjectAttribute title="Halway" text="23L"/>
+							<ObjectAttribute title="Rack" text="34"/>
+						</layout:VerticalLayout>
+
+						<layout:VerticalLayout>
+							<ObjectAttribute title="Availability"/>
+							<ObjectStatus text="In Stock" state="Success" />
+						</layout:VerticalLayout>
+					</layout:HorizontalLayout>
+				</f:DynamicPageHeader>
+			</f:header>
+			
+				<f:content>
+			<Table id="table" items="{/Orders}" inset="false"
+				enableBusyIndicator="false"
+				growing="true"
+				  	>
+					<headerToolbar>
+						<Toolbar>
+							<Title text="Orders" level="H2"/>
+						</Toolbar>
+					</headerToolbar>
+<columns>
+<Column width="12em">
+
+<Text text="OrderID"/>
+
+</Column>
+
+
+<Column>
+
+<Text text="CustomerID"/>
+
+</Column>
+
+
+<Column>
+
+<Text text="EmployeeID"/>
+
+</Column>
+<Column>
+
+<Text text="OrderDate"/>
+
+</Column>
+
+<Column>
+
+<Text text="ShipVia"/>
+
+</Column>
+<Column>
+
+<Text text="Freigh"/>
+
+</Column>
+
+<Column>
+
+<Text text="ShipName"/>
+
+</Column>
+</columns>
+
+
+<items>
+
+
+<ColumnListItem press="onpress"  type="Navigation">
+
+
+<cells>
+
+<Text text="{OrderID}"/>
+
+<Text text="{CustomerID}"/>
+
+<Text text="{EmployeeID}"/>
+
+<Text text="{OrderDate}"/>
+
+<Text text="{ShipVia}"/>
+
+<!--<ObjectStatus  state="{path:'City', formatter:'.formatter.colorFormatter'}"-->
+<!--               text="{City}"/>-->
+<Text text="{Freight}"/>
+	<!--<ObjectStatus-->
+	<!--				state="{path:'{City}', formatter:'.formatter.colorFormatter'}"-->
+	<!--				text="{City}"/>-->
+<Text text="{ShipName}"/> 
+</cells>
+
+</ColumnListItem>
+
+</items>
+	
+</Table>
+	</f:content>
+	</f:DynamicPage>
